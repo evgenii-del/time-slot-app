@@ -40,6 +40,12 @@ class UserController {
         const token = generateJwt(candidate.id, username);
         return res.json({token});
     };
+
+    async check(req, res, next) {
+        const {id, username} = req.user;
+        const token = generateJwt(id, username);
+        return res.json({token});
+    };
 }
 
 module.exports = new UserController();
