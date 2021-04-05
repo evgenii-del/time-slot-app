@@ -1,9 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 const Registration = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleChangeUsername = ({target}) => {
+        setUsername(target.value);
+    };
+
+    const handleChangePassword = ({target}) => {
+        setPassword(target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(username, password);
+    };
+
     return (
-        <div className="registration">
-            <h1>Registration</h1>
+        <div className="form-signup">
+            <form onSubmit={handleSubmit}>
+                <h1 className="h3 mb-3">Sign up</h1>
+                <label htmlFor="usernameInput">Username</label>
+                <input type="text" className="form-control" id="usernameInput" placeholder="Enter your username ..."
+                       value={username} onChange={handleChangeUsername}/>
+                <label htmlFor="passwordInput">Password</label>
+                <input type="password" className="form-control" id="passwordInput"
+                       placeholder="Enter your password ..." value={password} onChange={handleChangePassword}/>
+                <button className="w-100 btn btn-primary mt-3" type="submit">Sign up</button>
+                <div className="text-center">
+                    <Link to="/login">log in</Link>
+                </div>
+            </form>
         </div>
     );
 }
