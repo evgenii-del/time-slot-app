@@ -41,6 +41,7 @@
   }
 
   &__inner-times {
+    pointer-events: none;
     padding-left: 0;
     display: grid;
     grid-template-columns: repeat(24, 1fr);
@@ -60,9 +61,14 @@
     margin: 1px;
     border: 1px solid #000000;
 
-    &:hover {
+    &.active {
       border: 1px solid #FF0000;
       background-color: #FF0000;
     }
+
+    //&:hover {
+    //  border: 1px solid #FF0000;
+    //  background-color: #FF0000;
+    //}
   }
 }
