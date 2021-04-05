@@ -1,3 +1,10 @@
+*,
+*::before,
+*::after {
+  list-style: none;
+  text-decoration: none;
+}
+
 .form-login,
 .form-signup {
   width: 100%;
@@ -5,4 +12,57 @@
   background-color: #EEEEEE;
   padding: 15px;
   margin: 100px auto 0 auto;
+}
+
+.main {
+  max-width: 1044px;
+  padding: 10px;
+  margin: 0 auto;
+
+  &__title {
+    margin-bottom: 25px;
+  }
+
+  &__inner {
+    display: flex;
+  }
+
+  &__content {
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  &__inner-days {
+    padding-left: 0;
+    margin-bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, 1fr);
+  }
+
+  &__inner-times {
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: 1fr;
+  }
+
+  &__table {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    width: 100%;
+  }
+
+  &__table-item {
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid #000000;
+
+    &:hover {
+      border: 1px solid #FF0000;
+      background-color: #FF0000;
+    }
+  }
 }
