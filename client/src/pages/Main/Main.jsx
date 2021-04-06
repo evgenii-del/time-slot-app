@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import {DaysList, TimesList} from "../../components";
 
 const daysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const timesArr = [...Array(24).keys()].map(i => i + 1);
@@ -17,14 +18,9 @@ const Main = () => {
                 <button className="btn btn-primary" type="button" onClick={logOut}>Log out</button>
             </div>
             <div className="main__inner">
-                <ol className="main__inner-days">
-                    <li>Timeslots</li>
-                    {daysArr.map((day) => <li key={day}>{day}</li>)}
-                </ol>
+                <DaysList daysArr={daysArr}/>
                 <div className="main__content">
-                    <ol className="main__inner-times">
-                        {timesArr.map((time) => <li key={time}>{time}</li>)}
-                    </ol>
+                    <TimesList timesArr={timesArr}/>
                     <div className="main__table" ref={ref}>
                         {
                             daysArr.map((day) => timesArr.map((time) => <div
