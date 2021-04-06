@@ -6,9 +6,16 @@ const timesArr = [...Array(24).keys()].map(i => i + 1);
 const Main = () => {
     const ref = useRef();
 
+    const logOut = () => {
+        console.log('logOut')
+    };
+
     return (
         <div className="main">
-            <h1 className="main__title">Hi test. Please select timeslot</h1>
+            <div className="main__header d-flex justify-content-between">
+                <h1 className="main__title">Hi test. Please select timeslot</h1>
+                <button className="btn btn-primary" type="button" onClick={logOut}>Log out</button>
+            </div>
             <div className="main__inner">
                 <ol className="main__inner-days">
                     <li>Timeslots</li>

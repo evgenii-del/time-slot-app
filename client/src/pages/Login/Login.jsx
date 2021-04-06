@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from 'react-router-dom';
+
+import {login} from '../../http/userApi';
 
 const Login = () => {
+    const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -15,9 +18,10 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(username, password);
+        const response = login(username, password);
+        history.push('/');
     };
-
+    
     return (
         <div className="form-login">
             <form onSubmit={handleSubmit}>
@@ -29,10 +33,10 @@ const Login = () => {
                 <input type="password" className="form-control" id="passwordInput"
                        placeholder="Enter your password ..." value={password} onChange={handleChangePassword}/>
                 <button className="w-100 btn btn-primary mt-3" type="submit">Log in</button>
-                <div className="text-center">
-                    <Link to="/registration">Sign up</Link>
-                </div>
             </form>
+            <div className="text-center">
+                <Link to="/registration">Sign up</Link>
+            </div>
         </div>
     );
 }
