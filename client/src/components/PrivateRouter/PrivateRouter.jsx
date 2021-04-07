@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-    const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
+    const isAuth = localStorage.getItem('token');
     const obj = {...rest};
 
     return (

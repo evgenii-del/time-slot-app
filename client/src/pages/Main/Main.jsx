@@ -1,18 +1,14 @@
 import React, {useRef, useState, useCallback, useEffect} from 'react';
-import {DaysList, TimesList} from '../../components';
+import {useDispatch, useSelector} from 'react-redux';
 
-const daysArr = [
-    {id: 1, name: 'Monday'},
-    {id: 2, name: 'Tuesday'},
-    {id: 3, name: 'Wednesday'},
-    {id: 4, name: 'Thursday'},
-    {id: 5, name: 'Friday'},
-    {id: 6, name: 'Saturday'},
-    {id: 7, name: 'Sunday'}
-];
-const timesArr = [...Array(24).keys()].map(i => i + 1);
+import {DaysList, TimesList} from '../../components';
+import {clearUser} from '../../store/actions';
+import {saveSlot} from '../../http/slotApi';
 
 const Main = () => {
+    const {user} = useSelector((state) => state);
+    const dispatch = useDispatch();
+    const {daysArr, timesArr} = useSelector((state) => state);
     const ref = useRef();
     const finishSelectRef = useRef();
 
@@ -20,6 +16,12 @@ const Main = () => {
     const [startSelect, setStartSelect] = useState();
     const [finishSelect, setFinishSelect] = useState();
     const [remove, setRemove] = useState();
+
+    const logOut = () => {
+        dispatch(clearUser());
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+    };
 
     const changeSection = useCallback((e) => {
         const id = e.target.dataset.id;
@@ -47,7 +49,9 @@ const Main = () => {
 
     const saveSlots = () => {
         const items = ref.current.querySelectorAll('.active');
-        console.log(items.length);
+        const newItems = [...items].map((item) => item.dataset.id);
+        console.log(newItems, user.id);
+        saveSlot(JSON.stringify(newItems), user.id);
     };
 
     useEffect(() => {
@@ -80,7 +84,7 @@ const Main = () => {
         <div className="main">
             <div className="main__header d-flex justify-content-between">
                 <h1 className="main__title">Hi test. Please select timeslot</h1>
-                <button className="btn btn-primary" type="button">Log out</button>
+                <button className="btn btn-primary" type="button" onClick={logOut}>Log out</button>
             </div>
             <div className="main__inner">
                 <DaysList daysArr={daysArr}/>

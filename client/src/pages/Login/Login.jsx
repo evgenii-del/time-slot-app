@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
 import {login} from '../../http/userApi';
+import {setUser} from '../../store/actions';
 
 const Login = () => {
-    const history = useHistory();
+    const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,12 +18,12 @@ const Login = () => {
         setPassword(target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = login(username, password);
-        history.push('/');
+        const response = await login(username, password);
+        dispatch(setUser(response));
     };
-    
+
     return (
         <div className="form-login">
             <form onSubmit={handleSubmit}>

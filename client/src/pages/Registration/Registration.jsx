@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
 import {registration} from '../../http/userApi';
+import {setUser} from '../../store/actions';
 
 const Registration = () => {
-    const history = useHistory();
+    const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -19,7 +21,7 @@ const Registration = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const response = await registration(username, password);
-        history.push('/');
+        dispatch(setUser(response));
     };
 
     return (
