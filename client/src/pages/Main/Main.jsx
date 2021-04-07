@@ -6,9 +6,8 @@ import {clearUser} from '../../store/actions';
 import {saveSlot} from '../../http/slotApi';
 
 const Main = () => {
-    const {user} = useSelector((state) => state);
     const dispatch = useDispatch();
-    const {daysArr, timesArr} = useSelector((state) => state);
+    const {daysArr, timesArr, user} = useSelector((state) => state);
     const ref = useRef();
     const finishSelectRef = useRef();
 
@@ -19,8 +18,6 @@ const Main = () => {
 
     const logOut = () => {
         dispatch(clearUser());
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
     };
 
     const changeSection = useCallback((e) => {
@@ -50,8 +47,8 @@ const Main = () => {
     const saveSlots = () => {
         const items = ref.current.querySelectorAll('.active');
         const newItems = [...items].map((item) => item.dataset.id);
-        console.log(newItems, user.id);
         saveSlot(JSON.stringify(newItems), user.id);
+        alert('Data was saved!');
     };
 
     useEffect(() => {

@@ -9,6 +9,10 @@ export const setUser = (user) => {
     }
 };
 
-export const clearUser = () => ({
-    type: CLEAR_USER,
-});
+export const clearUser = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    return {
+        type: CLEAR_USER,
+    }
+};
