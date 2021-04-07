@@ -17,7 +17,8 @@
 .main {
   max-width: 1044px;
   padding: 10px;
-  margin: 0 auto;
+  margin: 100px auto 0 auto;
+  background-color: #EEEEEE;
 
   &__title {
     margin-bottom: 0;
@@ -60,19 +61,12 @@
   }
 
   &__table-item {
-    width: 30px;
     height: 30px;
-    margin: 1px;
     border: 1px solid #000000;
 
     &.active {
       border: 1px solid #FF0000;
       background-color: #FF0000;
     }
-
-    //&:hover {
-    //  border: 1px solid #FF0000;
-    //  background-color: #FF0000;
-    //}
   }
 }
