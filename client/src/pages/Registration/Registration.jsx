@@ -18,10 +18,11 @@ const Registration = () => {
         setPassword(target.value);
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        const response = await registration(username, password);
-        dispatch(setUser(response));
+        registration(username, password)
+            .then((response => dispatch(setUser(response))))
+            .catch((error) => alert(`Error: ${error.response.data.message}`));
     };
 
     return (
