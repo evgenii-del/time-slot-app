@@ -7,7 +7,7 @@ import { DaysList, TimesList } from '../../components';
 import { clearUser } from '../../store/actions';
 import saveSlot from '../../http/slotApi';
 
-const Main = () => {
+const Main = ({ setIsAuth }) => {
   const dispatch = useDispatch();
   const { daysArr, timesArr, user } = useSelector((state) => state);
   const ref = useRef();
@@ -20,6 +20,7 @@ const Main = () => {
 
   const logOut = () => {
     dispatch(clearUser());
+    setIsAuth(false);
   };
 
   const changeSection = useCallback((e) => {
@@ -49,8 +50,8 @@ const Main = () => {
   const saveSlots = () => {
     const items = ref.current.querySelectorAll('.active');
     const newItems = [...items].map((item) => item.dataset.id);
-    saveSlot(JSON.stringify(newItems), user.id);
-    alert('Data was saved!');
+    saveSlot(JSON.stringify(newItems), user.id)
+      .then(() => alert('Data was saved!'));
   };
 
   useEffect(() => {
@@ -91,14 +92,14 @@ const Main = () => {
           <TimesList timesArr={timesArr} />
           <div className="main__table" ref={ref}>
             {
-                            daysArr.map((day) => timesArr.map((time) => (
-                              <div
-                                className="main__table-item"
-                                data-id={`${day.id}-${time}`}
-                                key={`${day.id}-${time}`}
-                              />
-                            )))
-                        }
+              daysArr.map((day) => timesArr.map((time) => (
+                <div
+                  className="main__table-item"
+                  data-id={`${day.id}-${time}`}
+                  key={`${day.id}-${time}`}
+                />
+              )))
+           }
           </div>
         </div>
       </div>

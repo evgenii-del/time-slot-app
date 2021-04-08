@@ -21,7 +21,7 @@ const App = () => {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" render={() => (isAuth ? <Main /> : <Redirect to="/login" />)} />
+          <Route exact path="/" render={() => (isAuth ? <Main setIsAuth={setIsAuth} /> : <Redirect to="/login" />)} />
           <Route exact path="/registration" render={() => (isAuth ? <Redirect to="/" /> : <Registration />)} />
           <Route exact path="/login" render={() => (isAuth ? <Redirect to="/" /> : <Login />)} />
         </Switch>
