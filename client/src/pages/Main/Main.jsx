@@ -67,13 +67,11 @@ const Main = ({ setIsAuth }) => {
         const isThirdPos = startDay <= endDay && itemDay >= startDay && itemDay <= endDay;
         const isFourthPos = startDay > endDay && itemDay <= startDay && itemDay >= endDay;
 
-        if (isFirstPos || isSecondPos) {
-          if (isThirdPos || isFourthPos) {
-            if (remove) {
-              item.classList.remove('active');
-            } else {
-              item.classList.add('active');
-            }
+        if ((isFirstPos || isSecondPos) && (isThirdPos || isFourthPos)) {
+          if (remove) {
+            item.classList.remove('active');
+          } else {
+            item.classList.add('active');
           }
         }
       }
