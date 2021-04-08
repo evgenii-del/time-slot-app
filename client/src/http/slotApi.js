@@ -1,5 +1,5 @@
-import {$authHost} from './index';
+import { $authHost } from './index';
 
-export const saveSlot = (values, userId) => {
-    return $authHost.post('api/v1/slot/timeslot/', {values, userId});
-};
+const saveSlot = (values, userId) => $authHost.post('api/v1/slot/timeslot/', { values, userId });
+
+export default saveSlot;
